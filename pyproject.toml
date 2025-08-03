@@ -1,0 +1,12 @@
+[project]
+name = "ssj"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "rich>=14.1.0",
+]
+
+[project.scripts]
+ssj = "ssj.cli:main"
