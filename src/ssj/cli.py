@@ -57,7 +57,7 @@ class JobDisplay:
         for key, value in self.data.items():
             fields_match = True
             if lower_fields:
-                fields_match = any(f in key.lower() for f in lower_fields)
+                fields_match = key.lower() in lower_fields
             
             regex_match = True
             if pattern:
@@ -180,8 +180,8 @@ class JobDisplay:
 def main():
     parser = argparse.ArgumentParser(description="Display SLURM job information in a user-friendly table.")
     parser.add_argument("job_ids", type=int, nargs='+', help="One or more SLURM job IDs to display.")
-    parser.add_argument("-f", "--fields", nargs='+', help="Specific fields to show (keys exactly as in scontrol output).")
-    parser.add_argument("-g", "--grep", metavar="PATTERN", help="Regex to filter keys by name.")
+    parser.add_argument("-f", "--fields", nargs='+', help="Specific fields to show (exact match, case-insensitive).")
+    parser.add_argument("-g", "--grep", metavar="PATTERN", help="Regex to filter keys by name (partial match).")
     parser.add_argument("-j", "--json", action="store_true", help="Output raw JSON instead of a table.")
     parser.add_argument("--script", action="store_true", help="Show the job script file content.")
     parser.add_argument("--stdout", action="store_true", help="Show the stdout log file content.")
